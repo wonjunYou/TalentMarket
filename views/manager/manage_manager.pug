@@ -1,0 +1,136 @@
+head
+    title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+    style.
+        #check:visited{
+        font-weight:bold;
+        backgroud-color:skyblue;
+        }
+        #product_img {
+        width: 300px;
+        height: 300px;
+        }
+        #grid {
+        display:grid;
+        margin:1px;
+        padding:15px;
+        background-color:skyblue;
+        height:120px;
+        }
+body
+    .container-fluid
+    .row
+        .col-md-12
+            #grid
+                h1(style='font-size:55px;display:flex;justify-content:center;') Manager page
+    .row
+        br
+    .row
+        .col-md-1
+        .col-md-2
+          ul.list-group(style='margin:25px;font-size:27px;')
+            li.list-group-item
+              button.btn(id="check" style='margin:5px; width:100%' href='#') 유저 관리
+            li.list-group-item
+              button.btn(id="check" style='margin:5px; width:100%' href='#') 상품 관리
+            li.list-group-item
+              button.btn(id="check" style='margin:5px; width:100%' href='#') 관리자 관리
+        .col-md-7
+            .container(style="display:grid;")
+                .row(style="margin-bottom:15px;")
+                    .col-md-3
+                        img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
+                    .col-md-9
+                        .row.row-cols-3
+                            .col(style="display:flex; justify-content:center; margin-bottom:15px;")
+                                p(style="font-size:25px") A
+                            .col
+                                
+                            .col    
+                                
+
+                            .col
+                                button.btn(style="width:100%; height:auto;") 정보 확인
+                            .col
+                                button.btn(style="width:100%; height:auto;") 수정
+                            .col
+                                button.btn(style="width:100%; height:auto;") 삭제
+                .row
+                    .col-md-3
+                        img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
+                    .col-md-9
+                        .row.row-cols-3
+                            .col(style="display:flex; justify-content:center; margin-bottom:15px;")
+                                p(style="font-size:25px") B
+                            .col
+                                
+                            .col    
+                                
+
+                            .col
+                                button.btn(style="width:100%; height:auto;") 정보 확인
+                            .col
+                                button.btn(style="width:100%; height:auto;") 수정
+                            .col
+                                button.btn(style="width:100%; height:auto;") 삭제
+                .row
+                    .col-md-3
+                        img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
+                    .col-md-9
+                        .row.row-cols-3
+                            .col(style="display:flex; justify-content:center; margin-bottom:15px;")
+                                p(style="font-size:25px") C
+                            .col
+                                
+                            .col    
+                                
+
+                            .col
+                                button.btn(style="width:100%; height:auto;") 정보 확인
+                            .col
+                                button.btn(style="width:100%; height:auto;") 수정
+                            .col
+                                button.btn(style="width:100%; height:auto;") 삭제
+                .row
+                    .col-md-3
+                        img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
+                    .col-md-9
+                        .row.row-cols-3
+                            .col(style="display:flex; justify-content:center; margin-bottom:15px;")
+                                p(style="font-size:25px") D
+                            .col
+                                
+                            .col    
+                                
+
+                            .col
+                                button.btn(style="width:100%; height:auto;") 정보 확인
+                            .col
+                                button.btn(style="width:100%; height:auto;") 수정
+                            .col
+                                button.btn(style="width:100%; height:auto;") 삭제
+                .row
+                    .col-md-3
+                        img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
+                    .col-md-9
+                        .row.row-cols-3
+                            .col(style="display:flex; justify-content:center; margin-bottom:15px;")
+                                p(style="font-size:25px") E
+                            .col
+                                
+                            .col    
+                                
+
+                            .col
+                                button.btn(style="width:100%; height:auto;") 정보 확인
+                            .col
+                                button.btn(style="width:100%; height:auto;") 수정
+                            .col
+                                button.btn(style="width:100%; height:auto;") 삭제
+                                
+        .col-md-1  

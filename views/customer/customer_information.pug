@@ -1,0 +1,54 @@
+head
+    title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+    style.
+        #grid {
+          display:grid;
+          margin:1px;
+          padding:15px;
+          background-color:skyblue;
+          height:120px;
+        }
+body
+    .container-fluid
+    .row
+        .col-md-12
+            #grid
+                h1(style='font-size:70px;display:flex;justify-content:center;') My page
+    .row
+        br
+    .row
+        .col-md-1
+        .col-md-2
+          ul.list-group(style='margin:25px;font-size:auto;')
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 회원 정보
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 판매자 여부 선택
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 구매 상품 확인
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 후기 작성
+            li.list-group-item
+              button.btn(onclick="alert('회원 탈퇴 하시겠습니까?')",style='margin:5px; width:100%;height:auto;' href='#') 회원 탈퇴
+        .col-md-7
+            //- 
+                여기에 페이지 별 내용 들어감
+            ul.list-group(style='margin:25px;font-size:auto;')
+                li.list-group-item
+                    h4 이메일 : 
+                li.list-group-item
+                    h4 닉네임 :
+                li.list-group-item
+                    h4 구매 목록 :
+                    br
+                    include ..\layouts\product_list
+                    include ..\layouts\product_list
+                    include ..\layouts\product_list
+                    include ..\layouts\product_list
+        .col-md-1  

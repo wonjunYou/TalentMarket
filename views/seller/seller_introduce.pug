@@ -1,0 +1,65 @@
+head
+    title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+    style.
+        #grid {
+          display:grid;
+          margin:1px;
+          padding:15px;
+          background-color:skyblue;
+          height:120px;
+        }
+body
+    .container-fluid
+    .row
+        .col-md-12
+            #grid
+                h1(style='font-size:70px;display:flex;justify-content:center;') My page
+    .row
+        br
+    .row
+        .col-md-1
+        .col-md-2
+          ul.list-group(style='margin:25px;font-size:auto;')
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 프로필 관리
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 진행 상황 입력
+            li.list-group-item
+              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 상품 관리
+        .col-md-7
+            //- 
+                여기에 페이지 별 내용 들어감
+            ul.list-group(style='margin:25px;font-size:auto;')
+                li.list-group-item
+                    .container
+                    .row
+                        .col-md-4
+                        .col-md-4
+                            img.box(src='https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg',style='width:100%;height:auto',alt='Sheep')
+                            br
+                            button.btn(style='width:270px;color:lightgray;') 프로필 사진 수정
+                        .col-md-4
+                li.list-group-item
+                    h1
+                    |이메일 : abc@mju.ac.kr
+                li.list-group-item
+                    h1
+                    |닉네임 : 명지대학교
+                li.list-group-item
+                    h1
+                    |자기 소개 및 경력
+                    p
+                        .input-group
+                        span.input-group-addon
+                        input.form-control(type='text', value='전문적인 IT 강사로 몇년간 일해왔고~',style='height : 100px')
+                        span.input-group-addon
+
+                li.list-group-item         
+                    button.btn(style='width:70px;background:skyblue;float:right;') 수정   
+        .col-md-1
