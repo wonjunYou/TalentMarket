@@ -1,3 +1,17 @@
 extends layout
+
+block hero-unit
+  #head
+    h1 MJ
+    h2 Mong  
+  include ./includes/category
+
 block content
-  include products\product_explain
+  .container
+    .row
+      if !products
+        p 등록된 상품이 없습니다
+      each product in products.docs 
+        .products
+          .col-md-2
+            include ./products/_product

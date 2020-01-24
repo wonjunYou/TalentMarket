@@ -1,0 +1,19 @@
+.header.clearfix
+  nav.navbar.navbar-expand-md.navbar-dark.fixed-top#top
+    .container
+      a.navbar-brand(href="/") MJ Mong
+      button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          if (!currentUser) 
+            li.nav-item
+              a.nav-link(href='/signin') 로그인
+            li.nav-item
+              a.nav-link(href='/users/new') 회원가입
+          else
+            li.nav-item
+              a.nav-link(href='') 마이페이지
+            li.nav-item
+              a.nav-link(href='') 로그아웃  
