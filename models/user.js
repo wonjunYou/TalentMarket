@@ -7,7 +7,7 @@ var schema = new Schema({
   email: {type: String, required: true, index: true, unique: true, trim: true},
   password: {type: String},
   createdAt: {type: Date, default: Date.now},
-  guide: {type: Boolean, default: false},
+  seller: {type: Boolean, default: false},
   admin: {type: Boolean, default: false},
 }, { 
   toJSON: { virtuals: true},

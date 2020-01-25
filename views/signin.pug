@@ -1,0 +1,40 @@
+extends layout
+
+block content
+   .container
+   .row
+        .col-md-4
+        .col-md-3
+            form.form-signin(action='/signin', method='POST')
+                ul.list-group(style='margin:25px;font-size:auto;')
+                    li.list-group-item(style='background:skyblue;')
+                        .container
+                        .row
+                            .col-md-4
+                            .col-md-4
+                                h4(style='size:40px;color:black;float:center;') Log-in  
+                    li.list-group-item
+                        .container
+                        .row
+                            .col-md-4 이메일
+                            .col-md-8
+                                .input-group
+                                span.input-group-addon
+                                input.form-control(type='email', style='height : 30px', id='email', name='email')
+                                span.input-group-addon
+                    li.list-group-item
+                        .container
+                        .row
+                            .col-md-4 비밀번호
+                            .col-md-8
+                                .input-group
+                                span.input-group-addon
+                                input.form-control(type='password', style='height : 30px', id='password', name='password')
+                                span.input-group-addon
+                    li.list-group-item
+                        button.btn-primary(type='submit',style='height:40px;width:100%;margin:10px;') 로그인
+                        a(href='/users/signup')
+                            button.btn(type='button',style='width:100%;background:lightgray;margin:10px;') 회원 가입
+            
+
+        .col-md-4

@@ -11,9 +11,13 @@
             li.nav-item
               a.nav-link(href='/signin') 로그인
             li.nav-item
-              a.nav-link(href='/users/new') 회원가입
+              a.nav-link(href='/users/signup') 회원가입
           else
+            if(currentUser.seller)
+              li.nav-item
+                a.nav-link(href='') 판매자페이지
+            else
+              li.nav-item
+                a.nav-link(href=`/users/${currentUser._id}`) 마이페이지
             li.nav-item
-              a.nav-link(href='') 마이페이지
-            li.nav-item
-              a.nav-link(href='') 로그아웃  
+              a.nav-link(href='/signout') 로그아웃  

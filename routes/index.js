@@ -19,3 +19,7 @@ router.get('/', catchErrors(async(req, res, next) =>  {
 }));
 
 module.exports = router;
+
+// router.get('/', catchErrors(async(req, res, next) =>  {
+
+// }));
