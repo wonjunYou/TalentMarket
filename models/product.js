@@ -12,7 +12,7 @@ var schema = new Schema({
   numReads: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now},
   totalStarPoint: {type: Number, default: 0},
-  requireTime: {type: Date}
+  requireTime: {type: Date},
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

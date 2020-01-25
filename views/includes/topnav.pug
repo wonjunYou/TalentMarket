@@ -15,7 +15,7 @@
           else
             if(currentUser.seller)
               li.nav-item
-                a.nav-link(href='') 판매자페이지
+                a.nav-link(href=`/seller/${currentUser._id}`) 판매자페이지
             else
               li.nav-item
                 a.nav-link(href=`/users/${currentUser._id}`) 마이페이지

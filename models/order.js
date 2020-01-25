@@ -4,10 +4,12 @@ var mongoose = require('mongoose'),
 
 var schema = new Schema({
   buyer: { type: Schema.Types.ObjectId, ref: 'User'},
+  seller: {type: Schema.Types.ObjectId, ref: 'User'},
   product: { type: Schema.Types.ObjectId, ref: 'Product'},
   createdAt: {type: Date, default: Date.now},
   price: {type: Number, required: true},
   closingDate: {type: Date}, 
+  finish: {type: Boolean, default:false},
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

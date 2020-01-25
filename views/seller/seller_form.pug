@@ -1,0 +1,15 @@
+.form-group
+  label(for='name') 이름
+  input.form-control(type='text', id='name', name='name', placeholder='판매자 닉네임', value=seller.name)
+.form-group
+  label(for='university') 학력
+  input.form-control(type='text', id='university', name='university', placeholder='ex) 명지대학교 공과대학 학사', value=seller.university)
+.form-group
+  label(for='major') 전공
+  input.form-control(type='text', id='major', name='major', placeholder='전공', value=seller.major)
+.form-group
+  label(for='introduce') 소개
+  textarea.form-control(name="introduce", rows="5", value=seller.introduce)
+.form-group
+  label(for='img') 판매자 프로필 사진
+  input.form-control(type="file", name="img", value=seller.img)

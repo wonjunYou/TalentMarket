@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 판매자 정보 수정
+    form(action=`/seller/${seller._id}?_method=PUT`, method='POST', enctype="multipart/form-data")
+      include seller_form
+      button.btn.btn-primary(type='submit') 수정 완료

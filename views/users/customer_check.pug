@@ -27,15 +27,19 @@ body
         .col-md-2
           ul.list-group(style='margin:25px;font-size:auto;')
             li.list-group-item
-              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 회원 정보
+              a(href=`/users/${currentUser._id}`)
+                button.btn(style='margin:5px; width:100%;height:auto;' ) 회원 정보
             li.list-group-item
-              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 판매자 여부 선택
+              a(href='/seller/join')
+                button.btn(style='margin:5px; width:100%;height:auto;') 판매자 여부 선택
             li.list-group-item
-              button.btn(style='margin:5px; width:100%;height:auto;' href='#') 구매 상품 확인
+              a(href=`/users/products/${currentUser._id}`)
+                button.btn(style='margin:5px; width:100%;height:auto;') 구매 상품 확인
             li.list-group-item
               button.btn(style='margin:5px; width:100%;height:auto;' href='#') 후기 작성
             li.list-group-item
-              button.btn(onclick="alert('회원 탈퇴 하시겠습니까?')",style='margin:5px; width:100%;height:auto;' href='#') 회원 탈퇴
+              a.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`)
+                button.btn(style='margin:5px; width:100%;height:auto;') 회원탈퇴
         .col-md-7
             //- 
                 여기에 페이지 별 내용 들어감

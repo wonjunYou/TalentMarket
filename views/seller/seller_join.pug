@@ -4,20 +4,5 @@ block content
   .container
     h1.main-title 판매자 가입
     form(action='/seller', method='POST', enctype="multipart/form-data")
-      .form-group
-        label(for='name') 이름
-        input.form-control(type='text', id='name', name='name', placeholder='판매자 닉네임')
-      .form-group
-        label(for='university') 학력
-        input.form-control(type='text', id='university', name='university', placeholder='ex) 명지대학교 공과대학 학사')
-      .form-group
-        label(for='major') 전공
-        input.form-control(type='text', id='major', name='major', placeholder='전공')
-      .form-group
-        label(for='introduce') 소개
-        textarea.form-control(name="introduce", rows="5")
-      .form-group
-        label(for='img') 판매자 프로필 사진
-        input.form-control(type="file", name="img")
-      
+      include seller_form
       button.btn.btn-primary(type='submit') 판매자 가입하기

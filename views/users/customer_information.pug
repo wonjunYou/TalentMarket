@@ -31,7 +31,9 @@ block content
                 여기에 페이지 별 내용 들어감
             ul.list-group(style='margin:25px;font-size:auto;')
                 li.list-group-item
-                    h4= user.email 
+                  .row
+                    .col-md-3 이메일
+                    .col-md-9= user.email 
                 li.list-group-item
                     h4 구매 목록 :
                     br
