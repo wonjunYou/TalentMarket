@@ -1,4 +1,4 @@
 ul.nav.nav-tabs.justify-content-center(style='background:#81BEF7')
   each category in categorys
     li.nav-item
-      a.nav-link(href='#')= category.name
+      a.nav-link(href=`/category/${category._id}`)= category.name

@@ -32,8 +32,9 @@ block content
                             h4(style='display:inline;margin:15px;') 가격 :
                         .col-md-8
                             h4= product.price
-                li.list-group-item     
-                    button.btn-primary(style='width:100%;float:right;') 구매
+                li.list-group-item
+                    a(href=`/products/purchase/${product._id}`)     
+                        button.btn-primary(style='width:100%;float:right;') 구매
                 li.list-group-item
                     h3 판매자 프로필
                     ul.list-group(style='margin:25px;font-size:auto;')

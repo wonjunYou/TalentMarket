@@ -4,6 +4,7 @@ block content
   .container
     h1.main-title 진행상황 승인 신청
     form(action=`/seller/status/${order._id}`, method='POST', enctype="multipart/form-data")
+      .form-group 
         label(for='content') 진행상황
         textarea.form-control(name="content", rows="5")
       .form-group

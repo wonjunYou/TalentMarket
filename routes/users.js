@@ -4,6 +4,8 @@ const catchErrors = require('../lib/async-error');
 const User = require('../models/user');
 const Seller = require('../models/seller');
 const Order = require('../models/order');
+const Status = require('../models/status');
+
 /* GET users listing. */
 
 // 로그인 세션 확인
@@ -69,7 +71,8 @@ router.post('/', catchErrors(async(req, res, next) =>  {
 
 router.get('/:id', needAuth, catchErrors(async(req, res, next) =>  {
   const user = await User.findById(req.params.id);
-  res.render('users/customer_information', {user: user});
+  const orders = await Order.find({buyer: req.params.id}).populate('product'); 
+  res.render('users/customer_information', {user: user, orders: orders});
   
 }));
 
@@ -84,15 +87,18 @@ router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 12;
   var query = {buyer: req.params.id};
-  const order = await Order.paginate(query, {
+  const orders = await Order.paginate(query, {
     sort: {createdAt: -1}, 
-    page: page, limit: limit
+    page: page, limit: limit,
+    populate: 'product'
   });
-  res.render('users/customer_check',{order: order});
+  res.render('users/customer_check',{orders: orders});
 }));
 
-//todo 추후 기록 전부 삭제
-
+router.get('/status/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  const status = await Status.find({order_id: req.params.id});
+  res.render('users/customer_check_status', {status: status});
+}));
 
 
 module.exports = router;

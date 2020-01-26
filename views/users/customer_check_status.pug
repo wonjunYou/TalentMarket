@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  if !status
+    p 전달온 진행상황이 없습니다
+  else
+    each statu in status
+      img.col-md-3.img-fluid.my-2(src= statu.img)
+      dl.col-md-9
+        dt.col-md-3 주문번호
+        dd.col-md-9= statu.order_id
+        dt.col-md-3 내용
+        dd.col-md-9= statu.content
+        dt.col-md-3 수신일
+        dd.col-md-9= statu.createdAt

@@ -1,20 +1,6 @@
-head
-    title
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel='stylesheet')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
-    style.
-        #grid {
-          display:grid;
-          margin:1px;
-          padding:15px;
-          background-color:skyblue;
-          height:120px;
-        }
-body
+extends ../layout
+block content
+
     .container-fluid
     .row
         .col-md-12
@@ -38,44 +24,24 @@ body
             li.list-group-item
               button.btn(style='margin:5px; width:100%;height:auto;' href='#') 후기 작성
             li.list-group-item
-              a.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`)
+              a.need-confirm-btn(href=`/users/${currentUser._id}?_method=DELETE`)
                 button.btn(style='margin:5px; width:100%;height:auto;') 회원탈퇴
         .col-md-7
-            //- 
-                여기에 페이지 별 내용 들어감
-            ul.list-group(style='margin:25px;font-size:auto;')
-                li.list-group-item(style='overflow:scroll; height:100%;')
-                    .container-fluid
-                        .row
-                            .col-md-4
-                                img(src='https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg',style='width:100%;height:auto;',alt='Sheep')
-                            .col-md-6
-                                p
-                                |구입한 상품명
-                                p
-                                |판매자가 기입한 진행 상황이 기록됨     
-                    button.btn(style='width:70px;background:skyblue;float:right;') 승인
-                li.list-group-item(style='overflow:scroll; height:100%;')
-                    .container-fluid
-                        .row
-                            .col-md-4
-                                img(src='https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg',style='width:100%;height:auto;',alt='Sheep')
-                            .col-md-6
-                                p
-                                |구입한 상품명
-                                p
-                                |판매자가 기입한 진행 상황이 기록됨     
-                    button.btn(style='width:70px;background:skyblue;float:right;') 승인
-                li.list-group-item(style='overflow:scroll; height:100%;')
-                    .container-fluid
-                        .row
-                            .col-md-4
-                                img(src='https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg',style='width:100%;height:auto;',alt='Sheep')
-                            .col-md-6
-                                p
-                                |구입한 상품명
-                                p
-                                |판매자가 기입한 진행 상황이 기록됨     
-                    button.btn(style='width:70px;background:skyblue;float:right;') 승인
-            
+            if !orders.total
+                .alert.alert-info 구매 내역이 없습니다.
+            else
+                .orders
+                    each order in orders.docs
+                        .orders.row
+                            img.col-md-3.fluid(src=order.product.img)
+                            dl.col-md-9
+                                dt.col-md-3 주문번호
+                                dd.col-md-9= order.id 
+                                dt.col-sm-3 상품명
+                                dd.col-sm-9= order.product.title
+                                dt.col-sm-3 가격
+                                dd.col-sm-9= order.price
+                                dt.col-sm-3 마감일
+                                dd.col-sm-9= order.closingDate
+                                a.btn.btn-sm.btn-outline-secondary.btn-primary.text-white(href=`/users/status/${order._id}`) 상황 보러가기
         .col-md-1  
