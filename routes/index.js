@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const catchErrors = require('../lib/async-error');
 const Product = require('../models/product');
+const Category = require('../models/category');
+
 /* GET home page. */
 router.get('/', catchErrors(async(req, res, next) =>  {
   const page = parseInt(req.query.page) || 1;
@@ -15,7 +17,9 @@ router.get('/', catchErrors(async(req, res, next) =>  {
     page: page, limit: limit
   });  
 
-  res.render('index', {products: products});
+  const categorys = await Category.find({}).sort({sequence: 1});
+
+  res.render('index', {products: products, categorys: categorys});
 }));
 
 module.exports = router;

@@ -6,6 +6,7 @@ const Seller = require('../models/seller');
 const Order = require('../models/order');
 const Status = require('../models/status');
 const Product = require('../models/product');
+const Category = require('../models/category');
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
@@ -40,6 +41,12 @@ function needAuth(req, res, next) {
 router.get('/join', needAuth, catchErrors(async(req, res, next) =>  {
   var seller = {};
   res.render('seller/seller_join', {seller: seller});
+}));
+
+router.get('/product/add', needAuth, catchErrors(async(req, res, next) =>  {
+  var categorys = await Category.find({}).sort({sequence: 1});
+  product ={};
+  res.render('seller/product_management_add', {categorys: categorys, product: product});
 }));
 
 router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
@@ -130,7 +137,27 @@ router.post('/', needAuth, upload.single('img'), catchErrors(async(req, res, nex
   res.redirect('/');
 }));
 
--
+router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
+  var category = await Category.findOne({'name': req.body.category});
+  var product = new Product({
+    seller: req.user._id,
+    title: req.body.title,
+    category: category._id,
+    price: req.body.price,
+    requireTime: req.body.requireTime,
+    content: req.body.content
+  });
+  if (req.file) {
+    const dest = path.join(__dirname, '../public/images/uploads/');  // 옮길 디렉토리
+    console.log("File ->", req.file); // multer의 output이 어떤 형태인지 보자.
+    const filename = product.id + "/" + req.file.originalname;
+    await fs.move(req.file.path, dest + filename);
+    product.img = "/images/uploads/" + filename;
+  }
+  await product.save();
+  req.flash('success', '상품을 등록했습니다.');
+  res.redirect('/');
+}));
 
 router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var status = new Status({

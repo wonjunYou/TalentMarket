@@ -16,6 +16,9 @@
             if(currentUser.seller)
               li.nav-item
                 a.nav-link(href=`/seller/${currentUser._id}`) 판매자페이지
+            else if(currentUser.admin)
+              li.nav-item
+                a.nav-link(href=`/manager/category`) 카테고리 추가
             else
               li.nav-item
                 a.nav-link(href=`/users/${currentUser._id}`) 마이페이지

@@ -12,6 +12,5 @@ block content
       if !products.total
         p 등록된 상품이 없습니다
       each product in products.docs 
-        .products
-          .col-md-2
-            include ./products/_product
+        .col-md-2
+          include ./products/_product

@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 카테고리 추가
+    form(action='/manager/category', method='POST')
+      .form-group
+        label(for='name') name
+        input.form-control(type='text', id='name', name='name', placeholder='카테고리 명')
+      .form-group
+        label(for='sequence') 순서
+        input.form-control(type='number', id='sequence', name='sequence', placeholder=' 배열순서')
+      
+      button.btn.btn-primary(type='submit') 등록 

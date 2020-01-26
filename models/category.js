@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  name: {type: string}
+  name: {type: String},
+  sequence: {type: Number},
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

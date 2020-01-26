@@ -1,0 +1,21 @@
+.form-group
+  label(for="title") 제목
+  input.form-control(type="text", name="title", placeholder="제목", value=product.title)
+.form-group
+  label(for='img') 메인 사진
+  input.form-control(type="file", name="img")
+.form-group
+  label(for="category") 카테고리
+  select.form-control(name="category")
+    each category in categorys
+      option= category.name
+.form-group
+  label(for="price") 가격(원)
+  input.form-control(type="number", name="price", placeholder="가격", value=product.price)
+.form-group
+  label(for="requireTime") 소요 기간(일)
+  input.form-control(type="number", name="requireTime", placeholder="예상 소요 시간", value=product.requireTime)
+.form-group
+  label(for="content") 상세 설명
+  textarea.form-control(id="summernote", name="content", value=product.content)
+

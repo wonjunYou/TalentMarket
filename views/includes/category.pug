@@ -1,15 +1,4 @@
 ul.nav.nav-tabs.justify-content-center(style='background:#81BEF7')
-  li.nav-item
-    a.nav-link(href='#') App개발
-  li.nav-item
-    a.nav-link(href='#') Web개발
-  li.nav-item
-    a.nav-link(href='#') 블록 체인
-  li.nav-item
-    a.nav-link(href='#') 데이터베이스
-  li.nav-item
-    a.nav-link(href='#') 워드 프레스
-  li.nav-item
-    a.nav-link(href='#') 서버 지원
-  li.nav-item
-    a.nav-link(href='#') 기타
+  each category in categorys
+    li.nav-item
+      a.nav-link(href='#')= category.name
