@@ -38,18 +38,27 @@ function needAuth(req, res, next) {
   }
 }
 
-router.get('/join', needAuth, catchErrors(async(req, res, next) =>  {
+function isSeller(req, res, next){
+  if (req.user.seller){
+    next();
+  }else{
+    req.flash('danger','판매자로 가입해주세요!');
+    res.redirect('/seller/join');
+  }
+}
+
+router.get('/join', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   var seller = {};
   res.render('seller/seller_join', {seller: seller});
 }));
 
-router.get('/product/add', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/product/add', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   var categorys = await Category.find({}).sort({sequence: 1});
   product ={};
   res.render('seller/product_management_add', {categorys: categorys, product: product});
 }));
 
-router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/products/:id', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 12;
   
@@ -63,37 +72,36 @@ router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
   res.render('seller/seller_product_list', {products: products});
 }));
 
-router.get('/order/:id', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/order/:id', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
   var query = {seller: req.params.id};
   const orders = await Order.paginate(query, {
     sort: {createdAt: -1}, 
-    populate: 'product' ,
-    populate: 'buyer', 
+    populate: ['product', 'buyer'], 
     page: page, limit: limit
   });
   res.render('seller/seller_current_situation', {orders: orders});
 }));
 
-router.get('/status/:id', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/status/:id', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   var order = await Order.findById(req.params.id);
   res.render('seller/seller_status', {order: order});
 }));
 
 
-router.get('/:id', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/:id', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   var user = await User.findById(req.params.id);
   var seller = await Seller.findOne({seller_id: req.params.id});
   res.render('seller/seller_introduce', {user: user, seller: seller});
 }));
 
-router.get('/:id/edit', needAuth, catchErrors(async(req, res, next) =>  {
+router.get('/:id/edit', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
   var seller = await Seller.findOne({seller_id: req.params.id});
   res.render('seller/seller_edit', {seller: seller});
 }));
 
-router.put('/:id', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
+router.put('/:id', needAuth, isSeller, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var seller = await Seller.findById(req.params.id);
   
   seller.name = req.body.name;
@@ -113,7 +121,7 @@ router.put('/:id', needAuth, upload.single('img'), catchErrors(async(req, res, n
   res.redirect('/');
 }));
 
-router.post('/', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
+router.post('/', needAuth, isSeller, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var seller = new Seller({
     seller_id: req.user._id,
     name: req.body.name,

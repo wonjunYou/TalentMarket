@@ -29,8 +29,7 @@ block content
                     .container(style='align-items:center;')
                     each order in orders.docs
                         .row
-                            .col-md-4
-                                img.img-fluid(src= order.product.img)
+                            img.fluid.col-md-4(src= order.product.img)
                             .col-md-6
                                 .row
                                     .col-md-3 주문번호 
