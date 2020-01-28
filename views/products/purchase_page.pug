@@ -31,3 +31,50 @@ block content
                         button.btn(type='sumbit' ,style='color:white; margin-top:20px; width:70px;background:blue; float:right;') 구매
         //-todo 여기에 metamask, web3 연결
         .col-md-3
+        button.btn(id='meta') 메타마스크 연습
+        h1#text
+
+    script.
+        var userAccount;
+        var contract;
+        var accounts;
+
+        async function account() {
+            try {
+                accounts = await ethereum.send('eth_requestAccounts');
+
+            }catch (error) {
+                if (error.code === 4001) {
+                    console.log('s');
+                }else {
+                    console.error(error);
+                }
+            };
+        }
+
+        document.getElementById('meta').addEventListener('click', function() {
+        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
+        if (typeof web3 !== 'undefined') {
+            // Mist/MetaMask의 프로바이더 사용
+            web3js = new Web3(web3.currentProvider);
+            account();
+            console.log(web3.eth.accounts[0]);
+            //- web3.eth.getAccounts(function(err, accounts){
+            //-     if(err) {
+            //-         console.log(err);
+            //-     }
+            //-     if(accounts === 'undefined') {
+            //-         console.log('못가져옴');
+            //-     }
+            //-     console.log(accounts);
+            //-     userAccount = accounts;
+            //-     document.getElementById("text").innerText= userAccount;
+            //- });
+        } else {
+            alert('설치해');
+        }
+
+        // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
+        //- startApp();
+        })
+
