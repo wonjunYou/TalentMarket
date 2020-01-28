@@ -42,40 +42,13 @@ block content
         var accounts;
 
         var abi = [
-                        {
-                            "constant": false,
-                            "inputs": [],
-                            "name": "buy",
-                            "outputs": [],
-                            "payable": true,
-                            "stateMutability": "payable",
-                            "type": "function"
-                        },
-                        {
-                            "constant": false,
-                            "inputs": [],
-                            "name": "complete",
-                            "outputs": [],
-                            "payable": false,
-                            "stateMutability": "nonpayable",
-                            "type": "function"
-                        },
-                        {
-                            "inputs": [
-                                {
-                                    "name": "_seller",
-                                    "type": "address"
-                                },
-                                {
-                                    "name": "_price",
-                                    "type": "uint256"
-                                }
-                            ],
-                            "payable": false,
-                            "stateMutability": "nonpayable",
-                            "type": "constructor"
-                        }
-                    ];
+            {
+                "inputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            }
+            ];
 
 
         async function account() {
@@ -92,7 +65,7 @@ block content
         }
 
         function startApp() {
-            var contractAddress = "0x638DB584397c53254e8f4a7BdcF04e8de1E7e09F";
+            var contractAddress = "0x564421d60e4A455D2469799329c2d7a965764102";
             contract = web3js.eth.contract(abi, contractAddress);
         }
 
@@ -101,7 +74,14 @@ block content
             .send({ from: web3.eth.accounts[0], value: web3js.utils.toWei("1")});
         })
         document.getElementById('test').addEventListener('click', function() {
-            contract.methods.complete().send();
+            web3.eth.sendTransaction({
+                from: web3.eth.accounts[0],
+                to: '0x19f298E51290D47363f1d58cB56F190aa3343c6E',
+                value: '0x0.0.1'
+            }, function(error, hash){
+                });
+
+            
         })
 
         document.getElementById('meta').addEventListener('click', function() {

@@ -10,7 +10,7 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var mongoose   = require('mongoose');
 var passport = require('passport');
-var Web3 = require('web3')
+var Web3 = require('web3');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
