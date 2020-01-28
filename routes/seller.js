@@ -47,7 +47,7 @@ function isSeller(req, res, next){
   }
 }
 
-router.get('/join', needAuth, isSeller, catchErrors(async(req, res, next) =>  {
+router.get('/join', needAuth, catchErrors(async(req, res, next) =>  {
   var seller = {};
   res.render('seller/seller_join', {seller: seller});
 }));
