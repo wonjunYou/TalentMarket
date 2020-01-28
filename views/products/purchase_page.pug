@@ -32,12 +32,51 @@ block content
         //-todo 여기에 metamask, web3 연결
         .col-md-3
         button.btn(id='meta') 메타마스크 연습
+        button.btn(id='web3') web 연결 테스트 돈보내기
+        button.btn(id='test') web 거래 승인
         h1#text
 
     script.
         var userAccount;
         var contract;
         var accounts;
+
+        var abi = [
+                        {
+                            "constant": false,
+                            "inputs": [],
+                            "name": "buy",
+                            "outputs": [],
+                            "payable": true,
+                            "stateMutability": "payable",
+                            "type": "function"
+                        },
+                        {
+                            "constant": false,
+                            "inputs": [],
+                            "name": "complete",
+                            "outputs": [],
+                            "payable": false,
+                            "stateMutability": "nonpayable",
+                            "type": "function"
+                        },
+                        {
+                            "inputs": [
+                                {
+                                    "name": "_seller",
+                                    "type": "address"
+                                },
+                                {
+                                    "name": "_price",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "payable": false,
+                            "stateMutability": "nonpayable",
+                            "type": "constructor"
+                        }
+                    ];
+
 
         async function account() {
             try {
@@ -52,6 +91,19 @@ block content
             };
         }
 
+        function startApp() {
+            var contractAddress = "0x638DB584397c53254e8f4a7BdcF04e8de1E7e09F";
+            contract = web3js.eth.contract(abi, contractAddress);
+        }
+
+        document.getElementById('web3').addEventListener('click', function() {
+            contract.methods.buy()
+            .send({ from: web3.eth.accounts[0], value: web3js.utils.toWei("1")});
+        })
+        document.getElementById('test').addEventListener('click', function() {
+            contract.methods.complete().send();
+        })
+
         document.getElementById('meta').addEventListener('click', function() {
         // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
         if (typeof web3 !== 'undefined') {
@@ -59,22 +111,11 @@ block content
             web3js = new Web3(web3.currentProvider);
             account();
             console.log(web3.eth.accounts[0]);
-            //- web3.eth.getAccounts(function(err, accounts){
-            //-     if(err) {
-            //-         console.log(err);
-            //-     }
-            //-     if(accounts === 'undefined') {
-            //-         console.log('못가져옴');
-            //-     }
-            //-     console.log(accounts);
-            //-     userAccount = accounts;
-            //-     document.getElementById("text").innerText= userAccount;
-            //- });
         } else {
             alert('설치해');
         }
 
         // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
-        //- startApp();
+        startApp();
         })
 
