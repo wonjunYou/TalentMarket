@@ -40,16 +40,121 @@ block content
         var userAccount;
         var contract;
         var accounts;
-
+        var web3
         var abi = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "receiver",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "mint",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "receiver",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "send",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
             {
                 "inputs": [],
                 "payable": false,
                 "stateMutability": "nonpayable",
                 "type": "constructor"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "to",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Sent",
+                "type": "event"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "name": "balances",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "minter",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
             }
             ];
 
+        document.getElementById('meta').addEventListener('click', function() {
+        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
+        if (typeof web3 !== 'undefined') {
+            // Mist/MetaMask의 프로바이더 사용
+            web3 = new Web3(web3.currentProvider);
+            account();
+            console.log(web3.eth.accounts[0]);
+        } else {
+            alert('설치해');
+        }
+
+        // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
+        startApp();
+        })
 
         async function account() {
             try {
@@ -65,37 +170,22 @@ block content
         }
 
         function startApp() {
-            var contractAddress = "0x564421d60e4A455D2469799329c2d7a965764102";
-            contract = web3js.eth.contract(abi, contractAddress);
+            var contractAddress = "0xaa63eae7745223f0852d3e9cc76c3cfa0cf10ce7";
+            contract = web3.eth.contract(abi, contractAddress);
         }
 
         document.getElementById('web3').addEventListener('click', function() {
-            contract.methods.buy()
-            .send({ from: web3.eth.accounts[0], value: web3js.utils.toWei("1")});
+            contract.methods.send('0xe3869c52d84Cd9C43341A9Fcb3c31D6805ea3b34', 0x00)
+            .call();
         })
+
         document.getElementById('test').addEventListener('click', function() {
             web3.eth.sendTransaction({
                 from: web3.eth.accounts[0],
                 to: '0x19f298E51290D47363f1d58cB56F190aa3343c6E',
-                value: '0x0.0.1'
+                value: '0x00'
             }, function(error, hash){
                 });
-
-            
         })
 
-        document.getElementById('meta').addEventListener('click', function() {
-        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
-        if (typeof web3 !== 'undefined') {
-            // Mist/MetaMask의 프로바이더 사용
-            web3js = new Web3(web3.currentProvider);
-            account();
-            console.log(web3.eth.accounts[0]);
-        } else {
-            alert('설치해');
-        }
-
-        // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
-        startApp();
-        })
 
