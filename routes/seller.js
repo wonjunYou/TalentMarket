@@ -121,7 +121,7 @@ router.put('/:id', needAuth, isSeller, upload.single('img'), catchErrors(async(r
   res.redirect('/');
 }));
 
-router.post('/', needAuth, isSeller, upload.single('img'), catchErrors(async(req, res, next) =>  {
+router.post('/', needAuth,  upload.single('img'), catchErrors(async(req, res, next) =>  {
   var seller = new Seller({
     seller_id: req.user._id,
     name: req.body.name,
