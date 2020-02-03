@@ -30,11 +30,11 @@ block content
                                         td= product.requireTime
                         button.btn(type='sumbit' ,style='color:white; margin-top:20px; width:70px;background:blue; float:right;') 구매
         //-todo 여기에 metamask, web3 연결
-        //- .col-md-3
-        //- button.btn(id='meta') 메타마스크 연습
-        //- button.btn(id='web3') web 연결 테스트 돈보내기
-        //- button.btn(id='test') web 거래 승인
-        //- h1#text
+        .col-md-3
+        button.btn(id='meta') 메타마스크 연습
+        button.btn(id='web3') web 연결 테스트 돈보내기
+        button.btn(id='test') web 거래 승인
+        h1#text
 
     script.
         var userAccount;
@@ -42,112 +42,47 @@ block content
         var accounts;
         var web3
         var abi = [
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "receiver",
-                        "type": "address"
-                    },
-                    {
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "mint",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "name": "receiver",
-                        "type": "address"
-                    },
-                    {
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "send",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "name": "from",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "to",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "Sent",
-                "type": "event"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "name": "balances",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "minter",
-                "outputs": [
-                    {
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            }
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "get",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "x",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "set",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
             ];
 
         document.getElementById('meta').addEventListener('click', function() {
         // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
         if (typeof web3 !== 'undefined') {
             // Mist/MetaMask의 프로바이더 사용
-            web3 = new Web3(web3.currentProvider);
+            web3js = new Web3(web3.currentProvider);
             account();
             console.log(web3.eth.accounts[0]);
+            console.log(web3js);
+            console.log(web3);
         } else {
             alert('설치해');
         }
@@ -159,7 +94,6 @@ block content
         async function account() {
             try {
                 accounts = await ethereum.send('eth_requestAccounts');
-
             }catch (error) {
                 if (error.code === 4001) {
                     console.log('s');
@@ -170,13 +104,13 @@ block content
         }
 
         function startApp() {
-            var contractAddress = "0xaa63eae7745223f0852d3e9cc76c3cfa0cf10ce7";
-            contract = web3.eth.contract(abi, contractAddress);
+            var contractAddress = "0x6f8A9D13E53ca21fb644AC8a38B73FA8cE6B2660";
+            contract = new web3js.eth.Contract(abi, contractAddress);
+            console.log(contract);
         }
 
         document.getElementById('web3').addEventListener('click', function() {
-            contract.methods.send('0xe3869c52d84Cd9C43341A9Fcb3c31D6805ea3b34', 0x00)
-            .call();
+            contract.methods.set(123).send({ from: web3.eth.accounts[0]}).then(console.log);
         })
 
         document.getElementById('test').addEventListener('click', function() {
