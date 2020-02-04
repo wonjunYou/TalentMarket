@@ -31,95 +31,97 @@ block content
                         button.btn(type='sumbit' ,style='color:white; margin-top:20px; width:70px;background:blue; float:right;') 구매
         //-todo 여기에 metamask, web3 연결
         .col-md-3
-        //- button.btn(id='meta') 메타마스크 연습
-        //- button.btn(id='web3') web 연결 테스트 돈보내기
-        //- button.btn(id='test') web 거래 승인
-        //- h1#text
-    //- script(scr="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js")
+        //- form(action=`/web3` method="POST")
+        //-     button(type=submit)
+        //- p= value
+        
+        button.btn(id='meta') 메타마스크 연습
+        button.btn(id='web3') web 연결 테스트 돈보내기
+        button.btn(id='test') web 거래 승인
+        h1#text
+    //- script(src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js")
     script.
-        //- var userAccount;
-        //- var contract;
-        //- var accounts;
-        //- var web3
-        //- var abi = [
-        //-         {
-        //-             "constant": true,
-        //-             "inputs": [],
-        //-             "name": "get",
-        //-             "outputs": [
-        //-                 {
-        //-                     "internalType": "uint256",
-        //-                     "name": "",
-        //-                     "type": "uint256"
-        //-                 }
-        //-             ],
-        //-             "payable": false,
-        //-             "stateMutability": "view",
-        //-             "type": "function"
-        //-         },
-        //-         {
-        //-             "constant": false,
-        //-             "inputs": [
-        //-                 {
-        //-                     "internalType": "uint256",
-        //-                     "name": "x",
-        //-                     "type": "uint256"
-        //-                 }
-        //-             ],
-        //-             "name": "set",
-        //-             "outputs": [],
-        //-             "payable": false,
-        //-             "stateMutability": "nonpayable",
-        //-             "type": "function"
-        //-         }
-        //-     ];
+        var userAccount;
+        var myContract;
+        var accounts;
+        var web3
+        var abi =[
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "get",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "x",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "set",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
 
-        //- document.getElementById('meta').addEventListener('click', function() {
-        //- // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
-        //- if (typeof web3 !== 'undefined') {
-        //-     // Mist/MetaMask의 프로바이더 사용
-        //-     web3js = new Web3(web3.currentProvider);
-        //-     account();
-        //-     console.log(web3.eth.accounts[0]);
-        //-     console.log(web3js);
-        //-     console.log(web3);
-        //- } else {
-        //-     alert('설치해');
-        //- }
+        window.addEventListener('load', function() {
 
-        //- // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
-        //- startApp();
-        //- })
+        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
+        if (typeof web3 !== 'undefined') {
+            // Mist/MetaMask의 프로바이더 사용
+            web3js = new Web3(web3.currentProvider);
+        } else {
+            // 사용자가 Metamask를 설치하지 않은 경우에 대해 처리
+            // 사용자들에게 Metamask를 설치하라는 등의 메세지를 보여줄 것
+        }
 
-        //- async function account() {
-        //-     try {
-        //-         accounts = await ethereum.send('eth_requestAccounts');
-        //-     }catch (error) {
-        //-         if (error.code === 4001) {
-        //-             console.log('s');
-        //-         }else {
-        //-             console.error(error);
-        //-         }
-        //-     };
-        //- }
+        // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
+        startApp();
+        })
 
-        //- function startApp() {
-        //-     var contractAddress = "0x6f8A9D13E53ca21fb644AC8a38B73FA8cE6B2660";
-        //-     contract = web3js.eth.contract(abi, contractAddress);
-        //-     console.log(contract);
-        //- }
+        async function account() {
+            try {
+                accounts = await ethereum.send('eth_requestAccounts');
+            }catch (error) {
+                if (error.code === 4001) {
+                    console.log('s');
+                }else {
+                    console.error(error);
+                }
+            };
+        }
+        function startApp() {
+            var contractAddress = "0x78eEED0bF67fE27a27BedCD85c96A9Dc80C5e8da";
+            myContract = new web3js.eth.Contract(abi, contractAddress);
+            console.log(myContract);
+        }
 
-        //- document.getElementById('web3').addEventListener('click', function() {
-        //-     contract.methods.set(123).send({ from: web3.eth.accounts[0]}).then(console.log);
-        //- })
+        document.getElementById('web3').addEventListener('click', function() {
+            let value = myContract.methods.get().call().then(console.log);
+            
+        })
 
-        //- document.getElementById('test').addEventListener('click', function() {
-        //-     web3.eth.sendTransaction({
-        //-         from: web3.eth.accounts[0],
-        //-         to: '0x19f298E51290D47363f1d58cB56F190aa3343c6E',
-        //-         value: '0x00'
-        //-     }, function(error, hash){
-        //-         });
-        //- })
+        document.getElementById('test').addEventListener('click', function() {
+            web3.eth.sendTransaction({
+                from: web3.eth.accounts[0],
+                to: '0x19f298E51290D47363f1d58cB56F190aa3343c6E',
+                value: '0x00'
+            }, function(error, hash){
+                });
+        })
 
 

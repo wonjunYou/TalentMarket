@@ -16,6 +16,7 @@ var users = require('./routes/users');
 var seller = require('./routes/seller');
 var products = require('./routes/products');
 var manager = require('./routes/manager');
+var web3 = require('./routes/web3');
 
 var passportConfig = require('./lib/passport-config'); //passport 로그인
 
@@ -88,7 +89,7 @@ app.use('/seller', seller);
 require('./routes/auth')(app, passport);
 app.use('/products', products);
 app.use('/manager', manager);
-
+app.use('/web3', web3);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
