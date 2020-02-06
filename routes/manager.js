@@ -19,4 +19,5 @@ router.post('/category', catchErrors(async(req, res, next) =>  {
   req.flash('success', '키테고리 추가 성공');
   res.redirect('back');
 }));
+
 module.exports = router;

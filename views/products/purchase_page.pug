@@ -46,37 +46,146 @@ block content
         var accounts;
         var web3
         var abi =[
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "get",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "x",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "set",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            }
-        ];
+   {
+      "constant": true,
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "_trId",
+            "type": "uint256"
+         }
+      ],
+      "name": "getTalent",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "constant": true,
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "_trId",
+            "type": "uint256"
+         }
+      ],
+      "name": "getTrade",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "constant": true,
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "_trId",
+            "type": "uint256"
+         }
+      ],
+      "name": "requestAgree",
+      "outputs": [
+         {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+         }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "constant": false,
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "_trId",
+            "type": "uint256"
+         }
+      ],
+      "name": "respondAgree",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "constant": false,
+      "inputs": [
+         {
+            "internalType": "address payable",
+            "name": "_addressSeller",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "_price",
+            "type": "uint256"
+         }
+      ],
+      "name": "setTalent",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "constant": false,
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "_addressBuyer",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "_divded",
+            "type": "uint256"
+         },
+         {
+            "internalType": "uint256",
+            "name": "_trId",
+            "type": "uint256"
+         }
+      ],
+      "name": "setTrade",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+   }
+];
 
         window.addEventListener('load', function() {
 
@@ -105,7 +214,7 @@ block content
             };
         }
         function startApp() {
-            var contractAddress = "0x78eEED0bF67fE27a27BedCD85c96A9Dc80C5e8da";
+            var contractAddress = "0x870B2117BbC57eAeB73B83fB21A7523a11A4900E";
             myContract = new web3js.eth.Contract(abi, contractAddress);
             console.log(myContract);
         }
