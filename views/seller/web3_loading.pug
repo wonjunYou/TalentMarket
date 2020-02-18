@@ -6,16 +6,5 @@ block content
       label(for= "wait") 이더리움에 등록중입니다. 잠시만 기다려주세요
     button.btn#btn 테스트
     p#exam= product.price  
-  script.
-    document.getElementById('btn').addEventListener('click', function(){
-      let price = parseInt(document.getElementById('exam').innerHTML);
-      console.log(typeof userAccounts[0]);
-      console.log(typeof price);
-      myContract.methods.setTalent(userAccounts[0], price).send({ from: userAccounts[0]})
-      .on("receipt", function(receipt) {
-        console.log("등록성공");
-      })
-      .on("error", function(error) {
-        console.log("등록실패");
-      })
-    })
+  script(src='/javascript/talentDeploy.js')
+

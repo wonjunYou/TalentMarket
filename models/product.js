@@ -14,6 +14,8 @@ var schema = new Schema({
   createdAt: {type: Date, default: Date.now},
   totalStarPoint: {type: Number, default: 0},
   requireTime: {type: Number},
+  isBlock: {type: Boolean, default: false},
+  blockId: {type: Number}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
