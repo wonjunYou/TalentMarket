@@ -147,6 +147,7 @@ router.post('/', needAuth,  upload.single('img'), catchErrors(async(req, res, ne
 
 router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var category = await Category.findOne({'name': req.body.category});
+  try{
   var product = new Product({
     seller: req.user._id,
     title: req.body.title,
@@ -164,7 +165,11 @@ router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, 
   }
   await product.save();
   req.flash('success', '상품을 등록했습니다.');
-  res.redirect('/');
+  res.render('seller/web3_loading',{product: product});
+  } catch (err) {
+    req.flash('danger', '상품 등록에 실패했습니다.');
+    res.redirect('/');
+  }
 }));
 
 router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {

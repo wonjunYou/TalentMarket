@@ -42,169 +42,13 @@ block content
     //- script(src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js")
     script.
         var userAccount;
-        var myContract;
-        var accounts;
         var web3
-        var abi =[
-   {
-      "constant": true,
-      "inputs": [
-         {
-            "internalType": "uint256",
-            "name": "_trId",
-            "type": "uint256"
-         }
-      ],
-      "name": "getTalent",
-      "outputs": [
-         {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-         },
-         {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "constant": true,
-      "inputs": [
-         {
-            "internalType": "uint256",
-            "name": "_trId",
-            "type": "uint256"
-         }
-      ],
-      "name": "getTrade",
-      "outputs": [
-         {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-         },
-         {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "constant": true,
-      "inputs": [
-         {
-            "internalType": "uint256",
-            "name": "_trId",
-            "type": "uint256"
-         }
-      ],
-      "name": "requestAgree",
-      "outputs": [
-         {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-         }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "constant": false,
-      "inputs": [
-         {
-            "internalType": "uint256",
-            "name": "_trId",
-            "type": "uint256"
-         }
-      ],
-      "name": "respondAgree",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "constant": false,
-      "inputs": [
-         {
-            "internalType": "address payable",
-            "name": "_addressSeller",
-            "type": "address"
-         },
-         {
-            "internalType": "uint256",
-            "name": "_price",
-            "type": "uint256"
-         }
-      ],
-      "name": "setTalent",
-      "outputs": [
-         {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "constant": false,
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "_addressBuyer",
-            "type": "address"
-         },
-         {
-            "internalType": "uint256",
-            "name": "_divded",
-            "type": "uint256"
-         },
-         {
-            "internalType": "uint256",
-            "name": "_trId",
-            "type": "uint256"
-         }
-      ],
-      "name": "setTrade",
-      "outputs": [],
-      "payable": true,
-      "stateMutability": "payable",
-      "type": "function"
-   }
-];
-
-        window.addEventListener('load', function() {
-
-        // Web3가 브라우저에 주입되었는지 확인(Mist/MetaMask)
-        if (typeof web3 !== 'undefined') {
-            // Mist/MetaMask의 프로바이더 사용
-            web3js = new Web3(web3.currentProvider);
-        } else {
-            // 사용자가 Metamask를 설치하지 않은 경우에 대해 처리
-            // 사용자들에게 Metamask를 설치하라는 등의 메세지를 보여줄 것
-        }
-
-        // 이제 자네 앱을 시작하고 web3에 자유롭게 접근할 수 있네:
-        startApp();
-        })
 
         async function account() {
             try {
-                accounts = await ethereum.send('eth_requestAccounts');
+                userAccount = await ethereum.send('eth_requestAccounts');
+                console.log(userAccount);
+                console.log(web3.eth.accounts[0]);
             }catch (error) {
                 if (error.code === 4001) {
                     console.log('s');
@@ -219,9 +63,8 @@ block content
             console.log(myContract);
         }
 
-        document.getElementById('web3').addEventListener('click', function() {
-            let value = myContract.methods.get().call().then(console.log);
-            
+        document.getElementById('meta').addEventListener('click', function() {
+         account();            
         })
 
         document.getElementById('test').addEventListener('click', function() {
