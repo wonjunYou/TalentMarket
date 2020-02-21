@@ -1,8 +1,18 @@
 extends ../layout
 
 block content
-  .container
-    h1.main-title 판매자 정보 수정
-    form(action=`/seller/${seller._id}?_method=PUT`, method='POST', enctype="multipart/form-data")
-      include seller_form
-      button.btn.btn-primary(type='submit') 수정 완료
+  .row
+    br
+  .row
+    .col-md-12(style='display:flex;justify-content:center;')
+      h3.main-title(style='color:black;') 판매자 정보 수정
+  .row
+    br
+  .row
+    .col-md-1
+    .col-md-10(style='margin-left:6px;margin-right:6px;')
+      form(action=`/seller/${seller._id}?_method=PUT`, method='POST', enctype="multipart/form-data")
+        include seller_form
+        br
+        button.btn.btn-primary(type='submit',style="width:80%;display:flex;justify-content:center;") 수정 완료
+    .col-md-1

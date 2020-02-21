@@ -2,7 +2,7 @@
   nav.navbar.navbar-expand-md.navbar-dark.fixed-top#top
     .container
       a.navbar-brand(href="/") MJ Mong
-      button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
+      button.navbar-toggler(type="button", style="width:20%;",data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
 
       #navbarsExampleDefault.collapse.navbar-collapse
@@ -19,8 +19,10 @@
             else if(currentUser.admin)
               li.nav-item
                 a.nav-link(href=`/manager/category`) 카테고리 추가
+              li.nav-item
+                a.nav-link(href='/manager/manage_user') 관리자 페이지
             else
               li.nav-item
                 a.nav-link(href=`/users/${currentUser._id}`) 마이페이지
             li.nav-item
-              a.nav-link(href='/signout') 로그아웃  
+              a.nav-link(href='/signout') 로그아웃    

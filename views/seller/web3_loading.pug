@@ -1,10 +1,17 @@
-extends ../layout
-
 block content
-  .waitBox.d-flex.col-md-4
-    form(action='' method="POST")
-      label(for= "wait") 이더리움에 등록중입니다. 잠시만 기다려주세요
-    button.btn#btn 테스트
-    p#exam= product.price  
+    .col-md-1
+    .col-md-10
+        br
+        form(style="margin:0 auto; width:100%; padding: 1em;border:1px solid black; border-radius:1em;" action='#' accept-charset='utf-8' name='itherium_register' method='get')
+            div(style="display:flex;justify-content:center;")
+                text.bg-light(style="width:100%;text-align:center;")
+                 |
+                 |이더리움에 상품을 등록합니다. 
+                 |이더리움에 등록이 되어야 상품을 판매 할 수 있습니다.
+                 |
+            br
+            div(style="display:flex;justify-content:flex-end;")
+                button.btn.btn-info(type="submit" style='width:10%;') 보내기
+    .col-md-1
   script(src='/javascript/talentDeploy.js')
 

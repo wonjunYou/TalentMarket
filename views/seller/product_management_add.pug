@@ -1,9 +1,18 @@
 extends ../layout
 
 block content
-  .container
-    h1.main-title 새 여행상품 등록
-    form(action="/seller/add", method="POST", enctype="multipart/form-data")
-      include product_form
-      button.btn.btn-outline-primary(type="submit") 상품을 등록하세요!
-
+  .row
+    br
+  .row
+    .col-md-12(style='display:flex;justify-content:center;')
+      h3.main-title(style='color:black;') 새 여행 상품 등록
+  .row
+    br
+  .row
+    .col-md-1
+    .col-md-10(style='margin-left:6px;margin-right:6px;')  
+      form(action="/seller/add", method="POST", enctype="multipart/form-data")
+        include product_form
+        br
+        button.btn.btn-outline-primary(type="submit",style="width:80%;display:flex;justify-content:center;") 상품을 등록하세요!
+    .col-md-1

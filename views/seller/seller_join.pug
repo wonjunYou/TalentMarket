@@ -1,8 +1,18 @@
 extends ../layout
 
 block content
-  .container
-    h1.main-title 판매자 가입
-    form(action='/seller', method='POST', enctype="multipart/form-data")
-      include seller_form
-      button.btn.btn-primary(type='submit') 판매자 가입하기
+  .row
+    br
+  .row
+    .col-md-12(style='display:flex;justify-content:center;')
+      h3.main-title(style='color:black;') 판매자 가입
+  .row
+    br
+  .row
+    .col-md-1
+    .col-md-10(style='margin-left:6px;')
+        form(action='/seller', method='POST', enctype="multipart/form-data")
+          include seller_form
+          br
+          button.btn.btn-primary(type='submit', style="width:80%;display:flex;justify-content:center;") 판매자 가입하기
+    .col-md-1

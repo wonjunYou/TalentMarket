@@ -1,4 +1,4 @@
-ul.nav.nav-tabs.justify-content-center(style='background:#81BEF7')
-  each category in categorys
-    li.nav-item
-      a.nav-link(href=`/category/${category._id}`)= category.name
+div(style='height:40px;white-space:nowrap;background:#81BEF7;overflow-x:scroll;',id='category_list')
+  .ul(style='display:table;margin-left:auto;margin-right:auto;')
+    each category in categorys
+      a.nav-link(style='display:inline;',href=`/category/${category._id}`)= category.name

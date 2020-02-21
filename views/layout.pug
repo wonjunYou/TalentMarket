@@ -14,18 +14,19 @@ html
     //- script(src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js")
     //- script(src='/dist/web3.min.js')
     style.
+      #category_list::-webkit-scrollbar{
+        display:none;
+        width:max;
+      }
       #head{
       display:inline;
       text-align:center;
       display: block;
       background-color:skyblue;
-      padding-top:50px;
-      padding-bottom: 50px;
       }
       h1{
       display:inline;
       color:black;
-      font-size:80px;
       }
       h2{
       display:inline;
@@ -46,14 +47,11 @@ html
       justify-content: flex-end;
       align-items:flex-end;
       background-color:skyblue;
-      padding-right: 200px;
       color:white;
       font-style: normal;
-      padding-top: 10px;
       }
       a{
       color:white;
-      font-size: 18px;
       font-style: normal;
       }
       #grid {
@@ -72,12 +70,9 @@ html
       #top{
         display:flex;
         justify-content: flex-end;
-        align-items:flex-end;
         background-color:skyblue;
-        padding-right: 200px;
         color:white;
-        font-style: normal;
-        padding-top: 10px;
+        font-style: auto;
         }
       h1{
       display:inline;
@@ -125,11 +120,8 @@ html
         height: 300px;
         }
         #grid {
-        display:grid;
-        margin:1px;
-        padding:15px;
+        display:grid
         background-color:skyblue;
-        height:120px;
         }
         table,th,td{
         border: 1px solid gray;
