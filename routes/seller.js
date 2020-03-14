@@ -189,6 +189,14 @@ router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req
   res.redirect('/');
 }));
 
+router.post('/setTalent/:id', needAuth, catchErrors(async(req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  product.isBlock = true;
+  product.talentId = req.body.talentId;
+  product.save();
+  req.flash('success', '블록체인에 등록 성공했습니다');
+  res.redirect('/');
+}));
 
 module.exports = router;
 

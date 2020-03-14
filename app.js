@@ -11,6 +11,7 @@ var flash = require('connect-flash');
 var mongoose   = require('mongoose');
 var passport = require('passport');
 var Web3 = require('web3');
+var favicon = require('serve-favicon');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -37,6 +38,10 @@ mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사�
 const connStr = 'mongodb+srv://seonghunYang:hj@1027612@cluster0-sbtwm.mongodb.net/test?retryWrites=true&w=majority' ;
 mongoose.connect(connStr, {useNewUrlParser: true });
 mongoose.connection.on('error', console.error);
+
+// Favicon은 웹사이트의 대표 아이콘입니다. Favicon을 만들어서 /public에 둡시다.
+// https://www.favicon-generator.org/ 여기서 만들어볼 수 있어요.
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(logger('dev'));
 app.use(express.json());

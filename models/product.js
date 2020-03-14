@@ -15,7 +15,7 @@ var schema = new Schema({
   totalStarPoint: {type: Number, default: 0},
   requireTime: {type: Number},
   isBlock: {type: Boolean, default: false},
-  blockId: {type: Number}
+  talentId: {type: Number},
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

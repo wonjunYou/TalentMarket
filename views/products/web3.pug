@@ -8,21 +8,27 @@ block content
             div(style="display:flex;justify-content:center;")
                 text.bg-light(style="width:100%;text-align:center;")
                  |
-                 |이더리움에 상품을 등록합니다. 
-                 |이더리움에 등록이 되어야 상품을 판매 할 수 있습니다.
+                 |이더리움에 거래를 등록합니다. 
+                 |이더리움에 등록이 되어야 거래를 진행하실 수 있습니다.
                  |
             br
+            label(for="divded") 분할횟수
+            select.form-control#js-divded(name="divded")
+                option= "3"
+                option= "4"
+                option= "5"
             div(style="display:flex;justify-content:flex-end;")
             .d-flex.flex-column.align-items-center.justify-content-center.mb-3
                 i(style="font-size:50.0px;  width:50.0px;height:50.0px").fa.fa-spin.fa-spinner.hiding#spinner.col-md-4.py-0.px-0
                 p#info.hiding.my-0
             .d-flex.justify-content-center    
-                button.btn.btn-info#js-setTalent(type="button" style='width:10%;') 등록 신청
+                button.btn.btn-info#js-setTrade(type="button" style='width:10%;') 등록 신청
                 button.btn.btn-info#js-complete(type="submit" style='width:10%;') 등록 완료
-            input.hiding#talentId(type='number', name='talentId')
+            input.hiding#tradetId(type='number', name='talentId')
+        p#talentId.hiding= product.talentId
         p#price.hiding= product.price
         
 
     .col-md-1
-    script(src='/javascript/talentDeploy.js')
+    script(src='/javascript/tradeDeploy.js')
 

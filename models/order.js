@@ -10,6 +10,8 @@ var schema = new Schema({
   price: {type: Number, required: true},
   closingDate: {type: Date}, 
   finish: {type: Boolean, default:false},
+  isBlock: {type: Boolean, default:false},
+  trId: {type: Number}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

@@ -45,7 +45,7 @@ router.post('/purchase/:id', needAuth, catchErrors(async(req, res, next) =>  {
     closingDate: closingDate
   });
   await order.save();
-  res.redirect('/');
+  res.render('products/web3', {product:product});
 }));
 
 module.exports = router;
