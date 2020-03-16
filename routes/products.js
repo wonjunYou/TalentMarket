@@ -33,6 +33,15 @@ router.get('/purchase/:id', needAuth, catchErrors(async(req, res, next) =>  {
   res.render('products/purchase_page', {product: product, seller: seller});
 }));
 
+router.post('/setTrade/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  var order = await Order.findById(req.params.id);
+  order.isBlock = true;
+  order.trId = req.body.tradeId;
+  await order.save();
+  req.flash('success', "거래를 블록에 등록했습니다");
+  res.redirect('/');
+}));
+
 router.post('/purchase/:id', needAuth, catchErrors(async(req, res, next) =>  {
   var product = await Product.findById(req.params.id);
   var seller = await Seller.findOne({seller_id: product.seller}).populate('seller_id');
