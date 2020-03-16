@@ -18,8 +18,11 @@ function setTrade(divded, talentId, price) {
   myContract.methods.setTrade(userAccounts[0], divded, talentId).send({ from: userAccounts[0], value: web3js.utils.toWei(`${price/100}`)})
   .on('receipt', function(receipt) {
     console.log(receipt);
+    const value = receipt.events.NewTrade.returnValues;
     info.innerText = "등록완료";
     spinner.classList.add("hiding");
+    tradeIdIp.value = parseInt(value.tradeId);
+    deploy = true;
   })
   .on('error', function(error) {
     console.log('등록실패');
