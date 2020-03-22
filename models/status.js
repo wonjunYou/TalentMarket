@@ -7,7 +7,8 @@ var schema = new Schema({
   content: {type: String},
   img: {type: String},
   createdAt: {type: Date, default: Date.now},
-  approval: {type: Boolean, default: false}
+  approval: {type: Boolean, default: false},
+  isBlock: {type: Boolean, default: false}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

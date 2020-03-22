@@ -1,4 +1,4 @@
-const spin = document.getElementById('spinner');
+const spinner = document.getElementById('spinner');
 const info = document.getElementById('info');
 const setTradeBtn = document.getElementById('js-setTrade');
 const tradeIdIp = document.getElementById('tradeId');

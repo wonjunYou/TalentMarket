@@ -172,6 +172,13 @@ router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, 
   }
 }));
 
+router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  const status = Status.findById(req.params.id);
+  status.isBlock = true;
+  req.flash('success', '블록에 등록했습니다');
+  res.redirect('/');
+}));
+
 router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var status = new Status({
     order_id: req.params.id,
@@ -185,8 +192,9 @@ router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req
     status.img = "/images/uploads/" + filename;
   }
   await status.save();
-  req.flash('success', '전송했습니다.');
-  res.redirect('/');
+  const statusId = status.id;
+  status = await Status.findById(statusId).populate('order_id');
+  res.render("seller/requestWeb3",{status: status});
 }));
 
 router.post('/setTalent/:id', needAuth, catchErrors(async(req, res, next) => {

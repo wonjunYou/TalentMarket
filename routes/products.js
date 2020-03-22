@@ -37,6 +37,7 @@ router.post('/setTrade/:id', needAuth, catchErrors(async(req, res, next) =>  {
   var order = await Order.findById(req.params.id);
   order.isBlock = true;
   order.trId = req.body.tradeId;
+  order.divded = req.body.divded
   await order.save();
   req.flash('success', "거래를 블록에 등록했습니다");
   res.redirect('/');

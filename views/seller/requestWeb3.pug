@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    .col-md-1
+    .col-md-10
+        br
+        form(style="margin:0 auto; width:100%; padding: 1em;border:1px solid black; border-radius:1em;" action=`/seller/web3/${status.id}` accept-charset='utf-8' name='itherium_register' method='POST')
+            div(style="display:flex;justify-content:center;")
+                text.bg-light(style="width:100%;text-align:center;")
+                 |
+                 |이더리움에 요청을 등록합니다. 
+                 |이더리움에 요청이 등록 되어야 상대방이 요청을 확인할 수 있습니다.
+                 |
+            br
+            div(style="display:flex;justify-content:flex-end;")
+            .d-flex.flex-column.align-items-center.justify-content-center.mb-3
+                i(style="font-size:50.0px;  width:50.0px;height:50.0px").fa.fa-spin.fa-spinner.hiding#spinner.col-md-4.py-0.px-0
+                p#info.hiding.my-0
+            .d-flex.justify-content-center    
+                button.btn.btn-info#js-setrequest(type="button" style='width:10%;') 등록 신청
+                button.btn.btn-info#js-complete(type="submit" style='width:10%;') 등록 완료
+        p#tradeId.hiding= status.order_id.trId
+ 
+
+    .col-md-1
+    script(src='/javascript/requestDeploy.js')
+

@@ -11,7 +11,8 @@ var schema = new Schema({
   closingDate: {type: Date}, 
   finish: {type: Boolean, default:false},
   isBlock: {type: Boolean, default:false},
-  trId: {type: Number}
+  trId: {type: Number},
+  divded: {type: Number}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
