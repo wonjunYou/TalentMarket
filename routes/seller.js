@@ -173,7 +173,7 @@ router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, 
 }));
 
 router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
-  const status = Status.findById(req.params.id);
+  var status = await Status.findById(req.params.id);
   status.isBlock = true;
   req.flash('success', '블록에 등록했습니다');
   res.redirect('/');

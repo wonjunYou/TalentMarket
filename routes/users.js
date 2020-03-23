@@ -96,8 +96,29 @@ router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
 }));
 
 router.get('/status/:id', needAuth, catchErrors(async(req, res, next) =>  {
-  const status = await Status.find({order_id: req.params.id});
+  const status = await Status.find({order_id: req.params.id, approval: "대기"}).populate('order_id');
   res.render('users/customer_check_status', {status: status});
+}));
+
+router.get('/reject/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  const status = await Status.find({order_id: req.params.id, approval: "대기"});
+  status.approval = "거절";
+  await status.save();
+  req.flash('success',"합의를 거절하였습니다.")
+  res.redirect('/');
+}));
+
+router.get('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  var status = await Status.findById(req.params.id).populate('order_id');
+  res.render('users/web3Agree', {status: status});
+}));
+
+router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  var status = await Status.findById(req.params.id);
+  status.approval = "승낙";
+  await status.save();
+  req.flash("success", "합의를 승낙하였습니다");
+  res.redirect('/');
 }));
 
 

@@ -76,6 +76,12 @@ const abi = [
 					 "internalType": "string",
 					 "name": "useReport",
 					 "type": "string"
+				},
+				{
+					 "indexed": false,
+					 "internalType": "bool",
+					 "name": "isFinished",
+					 "type": "bool"
 				}
 		 ],
 		 "name": "InfoTrade",
@@ -153,6 +159,12 @@ const abi = [
 					 "internalType": "address",
 					 "name": "addressbuyer",
 					 "type": "address"
+				},
+				{
+					 "indexed": false,
+					 "internalType": "bool",
+					 "name": "isFinished",
+					 "type": "bool"
 				}
 		 ],
 		 "name": "RespondAgree",
@@ -310,7 +322,7 @@ const abi = [
 
 
 function startApp() {
-  const contractAddress = "0x9ce31ac83fc08ab8c84dafec168737d34e2337a8";
+  const contractAddress = "0x5b5fa1e41a85a5cf1225cedd2e17cc64a0bd666d";
   myContract = new web3js.eth.Contract(abi, contractAddress);
   console.log(myContract);
 }
