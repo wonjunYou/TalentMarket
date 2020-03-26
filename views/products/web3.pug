@@ -25,9 +25,9 @@ block content
                 button.btn.btn-info#js-setTrade(type="button" style='width:10%;') 등록 신청
                 button.btn.btn-info#js-complete(type="submit" style='width:10%;') 등록 완료
             input.hiding#tradeId(type='number', name='tradeId')
-        p#talentId.hiding= product.talentId
+        p#talentId.hiding= product.id
+        p#sellerAddress.hiding= product.sellerAddress
         p#price.hiding= product.price
-        
 
     .col-md-1
     script(src='/javascript/tradeDeploy.js')

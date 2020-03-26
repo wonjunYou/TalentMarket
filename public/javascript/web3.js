@@ -21,25 +21,6 @@ const abi = [
 					 "internalType": "uint256",
 					 "name": "talId",
 					 "type": "uint256"
-				}
-		 ],
-		 "name": "InfoTalent",
-		 "type": "event"
-	},
-	{
-		 "anonymous": false,
-		 "inputs": [
-				{
-					 "indexed": true,
-					 "internalType": "address",
-					 "name": "addressSeller",
-					 "type": "address"
-				},
-				{
-					 "indexed": false,
-					 "internalType": "uint256",
-					 "name": "price",
-					 "type": "uint256"
 				},
 				{
 					 "indexed": true,
@@ -93,20 +74,7 @@ const abi = [
 				{
 					 "indexed": false,
 					 "internalType": "uint256",
-					 "name": "talentId",
-					 "type": "uint256"
-				}
-		 ],
-		 "name": "NewTalent",
-		 "type": "event"
-	},
-	{
-		 "anonymous": false,
-		 "inputs": [
-				{
-					 "indexed": false,
-					 "internalType": "uint256",
-					 "name": "tradeId",
+					 "name": "trId",
 					 "type": "uint256"
 				}
 		 ],
@@ -124,25 +92,6 @@ const abi = [
 				}
 		 ],
 		 "name": "NewUseReport",
-		 "type": "event"
-	},
-	{
-		 "anonymous": false,
-		 "inputs": [
-				{
-					 "indexed": true,
-					 "internalType": "address",
-					 "name": "seller",
-					 "type": "address"
-				},
-				{
-					 "indexed": false,
-					 "internalType": "uint256",
-					 "name": "tradeId",
-					 "type": "uint256"
-				}
-		 ],
-		 "name": "RequestedAgree",
 		 "type": "event"
 	},
 	{
@@ -169,21 +118,6 @@ const abi = [
 		 ],
 		 "name": "RespondAgree",
 		 "type": "event"
-	},
-	{
-		 "constant": false,
-		 "inputs": [
-				{
-					 "internalType": "uint256",
-					 "name": "_talId",
-					 "type": "uint256"
-				}
-		 ],
-		 "name": "getTalent",
-		 "outputs": [],
-		 "payable": false,
-		 "stateMutability": "nonpayable",
-		 "type": "function"
 	},
 	{
 		 "constant": false,
@@ -230,21 +164,6 @@ const abi = [
 					 "type": "uint256"
 				}
 		 ],
-		 "name": "requestAgree",
-		 "outputs": [],
-		 "payable": false,
-		 "stateMutability": "nonpayable",
-		 "type": "function"
-	},
-	{
-		 "constant": false,
-		 "inputs": [
-				{
-					 "internalType": "uint256",
-					 "name": "_trId",
-					 "type": "uint256"
-				}
-		 ],
 		 "name": "respondAgree",
 		 "outputs": [],
 		 "payable": false,
@@ -261,19 +180,14 @@ const abi = [
 				},
 				{
 					 "internalType": "uint256",
-					 "name": "_price",
+					 "name": "price",
 					 "type": "uint256"
-				}
-		 ],
-		 "name": "setTalent",
-		 "outputs": [],
-		 "payable": false,
-		 "stateMutability": "nonpayable",
-		 "type": "function"
-	},
-	{
-		 "constant": false,
-		 "inputs": [
+				},
+				{
+					 "internalType": "uint256",
+					 "name": "_talID",
+					 "type": "uint256"
+				},
 				{
 					 "internalType": "address",
 					 "name": "_addressBuyer",
@@ -282,11 +196,6 @@ const abi = [
 				{
 					 "internalType": "uint256",
 					 "name": "_divded",
-					 "type": "uint256"
-				},
-				{
-					 "internalType": "uint256",
-					 "name": "_talId",
 					 "type": "uint256"
 				}
 		 ],
@@ -321,8 +230,9 @@ const abi = [
 
 
 
+
 function startApp() {
-  const contractAddress = "0x5b5fa1e41a85a5cf1225cedd2e17cc64a0bd666d";
+  const contractAddress = "0xf76a8a48d1371d4b63e604c779103673df71bda9";
   myContract = new web3js.eth.Contract(abi, contractAddress);
   console.log(myContract);
 }

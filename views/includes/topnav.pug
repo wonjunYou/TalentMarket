@@ -13,16 +13,22 @@
             li.nav-item
               a.nav-link(href='/users/signup') 회원가입
           else
-            if(currentUser.seller)
-              li.nav-item
-                a.nav-link(href=`/seller/${currentUser._id}`) 판매자페이지
-            else if(currentUser.admin)
+            if(currentUser.admin)
               li.nav-item
                 a.nav-link(href=`/manager/category`) 카테고리 추가
               li.nav-item
-                a.nav-link(href='/manager/manage_user') 관리자 페이지
-            else
-              li.nav-item
-                a.nav-link(href=`/users/${currentUser._id}`) 마이페이지
+                a.nav-link(href=`/manager/manage_user`) 유저 관리
+            else 
+              if(currentUser.seller)
+                li.nav-item
+                  a.nav-link(href=`/seller/${currentUser._id}`) 판매자페이지
+              else
+                li.nav-item
+                  a.nav-link(href=`/users/${currentUser._id}`) 마이페이지
+            li.nav-item
+              a.nav-link(href=`/notice`) 공지사항
             li.nav-item
               a.nav-link(href='/signout') 로그아웃    
+
+
+    

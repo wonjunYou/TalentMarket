@@ -1,0 +1,28 @@
+extends ../layout
+block hero-unit
+    #head
+        h2 공지사항
+block content 
+    .container
+    .row
+        br
+    .row(style="margin-left:0px; margin-right:0px; ")
+        .col-md-1
+        .col-md-10
+            table.table.table-hover(style="margin-top:30px; border-style:hidden;")
+                thead
+                tr
+                    th(style="width:55%") 제목
+                    th(style="width:15%") 작성자
+                    th(style="width:20%") 날짜
+                tbody(style="border-style:hidden;")
+                each notice in notices
+                    tr
+                        td
+                            a.noticed(href=`/notice/${notice._id}` style="color:black;")= notice.title
+                        td.noticed 관리자
+                        td.noticed= notice.date
+            if(currentUser.admin)
+                a.btn.btn-primary(style="float:right; color:white" href='/notice/notice_write') 글쓰기
+            
+        .col-md-1

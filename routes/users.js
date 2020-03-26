@@ -5,7 +5,8 @@ const User = require('../models/user');
 const Seller = require('../models/seller');
 const Order = require('../models/order');
 const Status = require('../models/status');
-
+const Review = require('../models/review');
+const Product = require('../models/product');
 /* GET users listing. */
 
 // 로그인 세션 확인
@@ -83,6 +84,11 @@ router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
   res.redirect('/');
 }));
 
+router.get('/review/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  const orders = await Order.find({buyer: req.params.id}).populate('product');
+  res.render('users/review_main', {orders: orders});
+}));
+
 router.get('/products/:id', needAuth, catchErrors(async(req, res, next) =>  {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 12;
@@ -119,6 +125,29 @@ router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
   await status.save();
   req.flash("success", "합의를 승낙하였습니다");
   res.redirect('/');
+}));
+
+router.post('/web3Review/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  var review = await Review.findById(req.params.id);
+  var product = await Product.findById(review.product);
+  product.numComments++
+  review.isblock = true;
+  await review.save();
+  await product.save();
+  req.flash('success', "거래를 등록했습니다.");
+  res.redirect('/');
+}));
+
+router.post('/review_main/:id', needAuth, catchErrors(async(req, res, next) =>  {
+  const order = await Order.findById(req.params.id);
+  var review = new Review({
+    content: req.body.content,
+    product: order.product,
+    order: order.id,
+    trId: order.trId,
+  });
+  await review.save();
+  res.render('users/web3Review', {review: review});
 }));
 
 

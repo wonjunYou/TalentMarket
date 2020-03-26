@@ -8,7 +8,6 @@ var schema = new Schema({
   img: {type: String},
   createdAt: {type: Date, default: Date.now},
   approval: {type: String, default: "대기"},
-  isBlock: {type: Boolean, default: false}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

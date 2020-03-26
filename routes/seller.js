@@ -154,7 +154,8 @@ router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, 
     category: category._id,
     price: req.body.price,
     requireTime: req.body.requireTime,
-    content: req.body.content
+    content: req.body.content,
+    sellerAddress: req.body.sellerAddress
   });
   if (req.file) {
     const dest = path.join(__dirname, '../public/images/uploads/');  // 옮길 디렉토리
@@ -165,19 +166,19 @@ router.post('/add', needAuth, upload.single('img'), catchErrors(async(req, res, 
   }
   await product.save();
   req.flash('success', '상품을 등록했습니다.');
-  res.render('seller/web3_loading',{product: product});
+  res.redirect('/');
   } catch (err) {
     req.flash('danger', '상품 등록에 실패했습니다.');
     res.redirect('/');
   }
 }));
 
-router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
-  var status = await Status.findById(req.params.id);
-  status.isBlock = true;
-  req.flash('success', '블록에 등록했습니다');
-  res.redirect('/');
-}));
+// router.post('/web3/:id', needAuth, catchErrors(async(req, res, next) =>  {
+//   var status = await Status.findById(req.params.id);
+//   status.isBlock = true;
+//   req.flash('success', '블록에 등록했습니다');
+//   res.redirect('/');
+// }));
 
 router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req, res, next) =>  {
   var status = new Status({
@@ -192,19 +193,17 @@ router.post('/status/:id', needAuth, upload.single('img'), catchErrors(async(req
     status.img = "/images/uploads/" + filename;
   }
   await status.save();
-  const statusId = status.id;
-  status = await Status.findById(statusId).populate('order_id');
-  res.render("seller/requestWeb3",{status: status});
-}));
-
-router.post('/setTalent/:id', needAuth, catchErrors(async(req, res, next) => {
-  const product = await Product.findById(req.params.id);
-  product.isBlock = true;
-  product.talentId = req.body.talentId;
-  product.save();
-  req.flash('success', '블록체인에 등록 성공했습니다');
   res.redirect('/');
 }));
+
+// router.post('/setTalent/:id', needAuth, catchErrors(async(req, res, next) => {
+//   const product = await Product.findById(req.params.id);
+//   product.isBlock = true;
+//   product.talentId = req.body.talentId;
+//   product.save();
+//   req.flash('success', '블록체인에 등록 성공했습니다');
+//   res.redirect('/');
+// }));
 
 module.exports = router;
 

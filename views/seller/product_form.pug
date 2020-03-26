@@ -1,6 +1,6 @@
 .form-group
   label(for="title") 제목
-  input.form-control(type="text", name="title", placeholder="제목", value=product.title)
+  input.form-control#title(type="text", name="title", placeholder="제목", value=product.title)
 .form-group
   label(for='img') 메인 사진
   input.form-control(type="file", name="img")
@@ -18,4 +18,5 @@
 .form-group
   label(for="content") 상세 설명
   textarea.form-control(id="summernote", name="content", value=product.content)
+  input.hiding#sellerAddress(name="sellerAddress")
 

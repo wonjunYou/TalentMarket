@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    include ./customer_list
+    .row
+        br
+    .row
+        .col-md-2
+        .col-md-8
+            ul.list-group(style='margin:0px;font-size:auto;')
+                li.list-group-item
+                    p 내가 쓴 후기 :
+                    if !orders
+                      p 구매한 상품이 없습니다
+                each order in orders 
+                    li.list-group-item
+                        img.img-fluid(src=order.product.img, style="display:inline;")
+                        .small.text-secondary= order.product.category.name
+                        .font-weight-bolder= order.product.title
+                        form(action=`/users/review_main/${order.id}`, method='POST' style="width:100%;margin-left:auto;margin-right:auto;display:inline;")
+                            .form-group
+                                textarea.form-control(name='content', placeholder='후기를 작성해 주십시오' style="width:100%" ) 
+                            button.btn.btn-primary(type='submit' style="margin-left:auto;margin-right:auto;width:20%;") 등록
+        .col-md-2 

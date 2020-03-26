@@ -1,83 +1,26 @@
-body
-    block content
+extends ../layout
+block hero-unit
+    #head
+        h2 유저 관리
+
+block content
+    .container
         .row
             br
-            include manager_list
-            br
-        .row(style='margin:10px;')
-            .col-md-2
-            .col-md-8
-                .container
-                    .row(style="margin-bottom:15px;")
-                        .col-md-3
-                            img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
-                        .col-md-9
-                            .row.row-cols-3
-                                .col(style="display:flex; justify-content:center; margin-bottom:15px;")
-                                    p(style="font-size:25px") A
-                                .col
-                                    
-                                .col    
-                                    
-
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 정보 확인
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 수정
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 삭제
-                    .row
-                        .col-md-3
-                            img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
-                        .col-md-9
-                            .row.row-cols-3
-                                .col(style="display:flex; justify-content:center; margin-bottom:15px;")
-                                    p(style="font-size:25px") B
-                                .col
-                                    
-                                .col    
-                                    
-
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 정보 확인
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 수정
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 삭제
-                    .row
-                        .col-md-3
-                            img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
-                        .col-md-9
-                            .row.row-cols-3
-                                .col(style="display:flex; justify-content:center; margin-bottom:15px;")
-                                    p(style="font-size:25px") C
-                                .col
-                                    
-                                .col    
-                                    
-
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 정보 확인
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 수정
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 삭제
-                    .row
-                        .col-md-3
-                            img(id='product_img' ,src='https://post-phinf.pstatic.net/20160109_243/cocoqoo_14523048582276nT9w_JPEG/mug_obj_201601091100583892.jpg' ,style="width:100%;height:auto")
-                        .col-md-9
-                            .row.row-cols-3
-                                .col(style="display:flex; justify-content:center; margin-bottom:15px;")
-                                    p(style="font-size:25px") D
-                                .col
-                                    
-                                .col    
-                                    
-
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 정보 확인
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 수정
-                                .col
-                                    button.btn(style="width:100%; height:auto;") 삭제
-        
+        .row    
+            .col-md-1
+            .col-md-10
+                each user in users
+                    ul.list-group(style="width:100%")
+                        li.list-group-item 
+                            h5(style="display:inline") 유저 이메일 :
+                            h6(style="display:inline")= user.email
+                        li.list-group-item
+                            h5(style="display:inline") 판매자 여부 :
+                            if(user.seller)
+                                a.btn.btn-primary.mx-2(href=`/seller/${user._id}`) 판매자
+                            else
+                                btn 구매자
+                        li.list-group-item 
+                            a.btn.btn-primary(href=`/users/${user._id}?_method=DELETE` style="display:inline-block; margin : 10px;") 삭제
+            .col-md-1

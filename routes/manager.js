@@ -3,8 +3,20 @@ var router = express.Router();
 const catchErrors = require('../lib/async-error');
 const Product = require('../models/product');
 const Category = require('../models/category');
+const User = require('../models/user');
 
 /* GET users listing. */
+router.get('/manage_user', catchErrors(async(req,res, next) =>{
+  User.find({}, function(err, users) {
+    if(err) {
+      return next(err);
+    }
+    console.log("err",err);
+    console.log(users)
+    res.render('manager/manage_user',{users:users});
+  });
+}));
+
 router.get('/category', catchErrors(async(req, res, next) =>  {
   res.render('manager/manage_category');
 }));
