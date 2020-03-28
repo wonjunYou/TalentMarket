@@ -131,7 +131,7 @@ router.post('/web3Review/:id', needAuth, catchErrors(async(req, res, next) =>  {
   var review = await Review.findById(req.params.id);
   var product = await Product.findById(review.product);
   product.numComments++
-  review.isblock = true;
+  review.isBlock = true;
   await review.save();
   await product.save();
   req.flash('success', "거래를 등록했습니다.");

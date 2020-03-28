@@ -18,9 +18,9 @@ const abi = [
 				},
 				{
 					 "indexed": false,
-					 "internalType": "uint256",
+					 "internalType": "string",
 					 "name": "talId",
-					 "type": "uint256"
+					 "type": "string"
 				},
 				{
 					 "indexed": true,
@@ -184,9 +184,9 @@ const abi = [
 					 "type": "uint256"
 				},
 				{
-					 "internalType": "uint256",
+					 "internalType": "string",
 					 "name": "_talID",
-					 "type": "uint256"
+					 "type": "string"
 				},
 				{
 					 "internalType": "address",
@@ -231,8 +231,9 @@ const abi = [
 
 
 
+
 function startApp() {
-  const contractAddress = "0xf76a8a48d1371d4b63e604c779103673df71bda9";
+  const contractAddress = "0xb8baa5c8f2a9bbeba9a3519c5608fe06125fac1a";
   myContract = new web3js.eth.Contract(abi, contractAddress);
   console.log(myContract);
 }

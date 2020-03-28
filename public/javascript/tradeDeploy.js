@@ -22,7 +22,7 @@ function setTrade(divded, talentId, price, sellerAddress) {
     const value = receipt.events.NewTrade.returnValues;
     info.innerText = "등록완료";
     spinner.classList.add("hiding");
-    tradeIdIp.value = parseInt(value.tradeId);
+    tradeIdIp.value = parseInt(value.trId);
     deploy = true;
   })
   .on('error', function(error) {
