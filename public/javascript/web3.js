@@ -232,8 +232,9 @@ const abi = [
 
 
 
+
 function startApp() {
-  const contractAddress = "0xb8baa5c8f2a9bbeba9a3519c5608fe06125fac1a";
+  const contractAddress = "0xb7abc6920f51fa4c97cd9237e4352493d2d92248";
   myContract = new web3js.eth.Contract(abi, contractAddress);
   console.log(myContract);
 }
