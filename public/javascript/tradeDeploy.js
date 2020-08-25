@@ -35,9 +35,9 @@ function init() {
     loading();
     let divded = parseInt(jsdivded.innerText);
     let talentId = talent.innerText;
-    let price = parseInt(jsprice.innerText);
+    let price = parseFloat(jsprice.innerText);
     let sellerAddress = jsSellerAddress.innerText;
-    setTrade(divded, talentId, price, sellerAddress);
+    setTrade(divded, talentId, price * 100, sellerAddress);
   });
 }
 
