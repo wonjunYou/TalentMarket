@@ -234,9 +234,13 @@ const abi = [
 
 
 function startApp() {
-  const contractAddress = "0x783004ac6615ab176AaB38BFCf9988188eAea869";
+  const contractAddress = "0xc6A6887dB23A5d4374EC08E9e0B29F29ad2b49ac";
   myContract = new web3js.eth.Contract(abi, contractAddress);
-  console.log(myContract);
+	console.log(myContract);
+	myContract.methods.getTrade(0).send({from: "0x8225D7986904918825094eE92a950F565C7eEe6a"})
+	.on('receipt', function(receipt){
+		console.log(receipt)
+	})
 }
 
 async function account() {
